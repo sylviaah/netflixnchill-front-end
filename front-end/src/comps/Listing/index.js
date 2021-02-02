@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const ListWrapper = styled.div`
     width: 100;
+    
 `;
 
 const ImgContainer = styled.div``;
@@ -18,8 +19,8 @@ const Listing = () => {
     return <ListWrapper>
         <ImgContainer/>
         <TextContainer>
-            <ListTitle>{title}</ListTitle>
-            <ListDesc>{desc}</ListDesc>
+            <ListTitle>ListTitle</ListTitle>
+            <ListDesc>ListDesc</ListDesc>
         </TextContainer>
     </ListWrapper>
 }
