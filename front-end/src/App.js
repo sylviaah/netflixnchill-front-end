@@ -5,7 +5,7 @@ import Listing from './comps/Listing';
 
 function App() {
   return (
-    <AddButton/>
+    <Listing/>
   )}
 
 export default App;
