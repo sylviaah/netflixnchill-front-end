@@ -5,7 +5,7 @@ import Listing from './comps/Listing';
 
 function App() {
   return (
-    <AddButton/>
+    <NavBar/>
   )}
 
 export default App;
