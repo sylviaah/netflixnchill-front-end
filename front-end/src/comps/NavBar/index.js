@@ -10,6 +10,7 @@ const NavWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.2);
 `;
 
 const NavBG = styled.div`
@@ -29,6 +30,7 @@ const NavItem = styled.button`
   color: #000000;
   font-weight: bold;
   border-radius: 43px;
+  outline:none;
 `;
 
 const NavBreak = styled.div`
@@ -50,9 +52,9 @@ const NavBar = ({focused, setFocus, tabName}) => {
     console.log (focusedTab)
     return <NavWrapper>
         <NavBG>
-            <NavItem style={{backgroundColor: focusedTab == 1 ? "#FFFFFF" : "#F2F2F2"}} onClick={() => {setFocusedTab(1)}}>Planning</NavItem>
-            <NavItem style={{backgroundColor: focusedTab == 2 ? "#FFFFFF" : "#F2F2F2"}} onClick={() => {setFocusedTab(2)}}>Watching</NavItem>
-            <NavItem style={{backgroundColor: focusedTab == 3 ? "#FFFFFF " : "#F2F2F2"}} onClick={() => {setFocusedTab(3)}}>Complete</NavItem>
+            <NavItem style={{backgroundColor: focusedTab == 1 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 1 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(1)}}>Planning</NavItem>
+            <NavItem style={{backgroundColor: focusedTab == 2 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 2 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(2)}}>Watching</NavItem>
+            <NavItem style={{backgroundColor: focusedTab == 3 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 3 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(3)}}>Complete</NavItem>
         </NavBG>
         <NavBreak/>
     </NavWrapper>

@@ -14,6 +14,7 @@ const ButtonBox = styled.button`
 const ButtonText = styled.div`
     color:#FFF;
     font-weight:bold;
+    font-size:16px;
 `
 
 const Buttons = ({text}) =>{
