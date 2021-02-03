@@ -12,6 +12,7 @@ const ButtonBox = styled.button`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     color: #FFFFFF;
     font-size: 48px;
+    outline:none;
 `;
 
 
