@@ -9,19 +9,29 @@ align-items:center;
 width:120px;
 `;
 
-const AddImageText = styled.div`
-    font-weight:bold;
-    margin-left:5px;
-`;
-
 const IconBox = styled.img`
  max-width:30px;
-`
+ padding-right:7px;
+`;
+
+const HiddenInput = styled.input`
+display:none;
+`;
+
+const InputContainer = styled.label`
+width:120px;
+display:flex;
+align-items:center;
+font-weight:bold;
+`;
 
 const AddImage = ({text}) => {
     return <Container>
-        <IconBox src={camera}></IconBox>
-        <AddImageText>{text}</AddImageText>
+        <InputContainer>
+            <IconBox src={camera}></IconBox>
+            <HiddenInput type="file" accept="image/*"></HiddenInput>
+            Add Image
+        </InputContainer>
     </Container>
 }
 

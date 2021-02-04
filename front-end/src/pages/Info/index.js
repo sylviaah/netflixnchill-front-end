@@ -28,7 +28,7 @@ const Info = () => {
             <Listing Desc="This is a test to see if there is any overflow of the text this is a test this is a test" img={"url("+link+")"}></Listing>
             <RadioInput></RadioInput>
             <ButtonContainer>
-            <Buttons text="Add to List"></Buttons>
+            <Buttons text="Save"></Buttons>
             </ButtonContainer>
         </Content>
     </div>

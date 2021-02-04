@@ -7,7 +7,7 @@ import Completed from '../src/pages/Completed';
 
 function App() {
   return (
-    <Completed></Completed>
+    <Info></Info>
   )}
 
 export default App;
