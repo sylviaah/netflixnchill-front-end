@@ -1,60 +1,69 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
 display:flex;
 flex-direction:column;
-margin-top:40px;
+margin-top:100px;
 `;
 
-const Select = styled.div`
-margin-right:15px;
-margin-top:10px;
-margin-bottom:10px;
-display:inline-flex;
-width:10px;
-height:10px;
-border: 2px solid #d8e4e2;
-border-radius:50%;
-padding:3px;
+const Button = styled.div`
+margin-bottom:20px;
+`;
 
-&::after{
-    content:"";
-    height:100%;
-    width:100%;
-    display:block;
-    background-color:#FA6E5A;
-    border-radius:50%;
-
-    transform:scale(0);
-
+const Input = styled.input`
+:after {
+    width: 20px;
+    height: 20px;
+    border-radius: 15px;
+    top: -2px;
+    left: -2px;
+    position: relative;
+    background-color: #F8F4F4;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    margin-right:20px;
+    box-shadow: 0px 0.5px 5px 1px rgba(0, 0, 0, 0.15);
 }
-
-&:checked + &::after {
-    transform:scale(1);
+:checked:after {
+    width: 12px;
+    height: 12px;
+    border-radius: 15px;
+    top: -2px;
+    left: -2px;
+    position: relative;
+    background-color: #FA6E5A;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    margin-right:20px;
+    border:solid #F8F4F4 5px;
+    box-shadow: 0px 0.5px 5px 1px rgba(0, 0, 0, 0.15);
 }
+`;
 
+const Text = styled.label`
+margin-left:15px;
 `;
 
 const RadioInput = () => {
+    const [focusedRadio, setFocusedRadio] = useState(0);
+
 
     return<Container>
-        <div>
-        <Select id='plan' name='choose'/>
-        <label for='plan'>Planning to watch</label>
-        </div>
-        
-        <div>
-        <Select id='plan' name='choose'/>
-        <label for='watching'>Currently watching</label>
-        </div>
-
-        <div>
-        <Select id='plan' name='choose'/>
-        <label for='done'>Done watching</label>
-        </div>
-        
-
+    <Button>
+        <Input type="radio" id="Planning" name="status" value="Planning"/>
+        <Text for="Planning">Planning to watch</Text>
+    </Button>
+    <Button>
+        <Input type="radio" id="Currently" name="status" value="Currently"/>
+        <Text for="Currently">Currently watching</Text>
+    </Button>
+    <Button>
+        <Input type="radio" id="Done" name="status" value="Done"/>
+        <Text for="Done">Done watching</Text>
+    </Button>
     </Container>
 }
 
