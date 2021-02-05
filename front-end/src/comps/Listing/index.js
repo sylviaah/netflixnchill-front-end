@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+  
 
 const ListWrapper = styled.div`
     width: 336px;
@@ -41,9 +48,13 @@ const ListDesc = styled.div`
     color: #C1C1C1;
 `;
 
-const Listing = ({Title, Desc, img}) => {
+const Listing = ({Title, Desc, img, id, onClick}) => {
     return <ListWrapper>
-        <ImgContainer img={img}/>
+        <Link to="/info">
+            <ImgContainer img={img} onClick={()=>{
+        onClick(id);
+        }}>
+        </ImgContainer></Link>
         <TextContainer>
             <ListTitle>{Title}</ListTitle>
             <ListDesc>{Desc}</ListDesc>
@@ -52,8 +63,11 @@ const Listing = ({Title, Desc, img}) => {
 }
 
 Listing.defaultProps = {
-    Title: 'Haikyuu',
-    Desc: 'Add a note...'
+    Title: 'Title',
+    Desc: 'Add a note...',
+    onClick: ()=>{},
+    id: null,
+    clicked:null
 }
 
 export default Listing;

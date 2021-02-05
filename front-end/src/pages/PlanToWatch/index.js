@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import Title from '../../comps/Title';
 import Listing from '../../comps/Listing';
 import AddButton from '../../comps/AddButton';
 import NavBar from '../../comps/NavBar';
+
+const ArrayofShows = require("../../fakeDB.json");
 
 const ListContainer = styled.div`
 display:flex;
@@ -24,27 +27,47 @@ right:20px;
 bottom:120px;
 `;
 
-const link = "https://images-na.ssl-images-amazon.com/images/I/71ZxpODh1iL._AC_SL1024_.jpg"
-
 const PlanToWatch = () => {
+    const [shows, setShows] = useState([]);
+
+    const GetShows = async () => {
+        setShows(ArrayofShows);
+        console.log(ArrayofShows)
+        console.log("The img "+ ArrayofShows[1].img)
+    }
+
+    useEffect(() => {
+        GetShows()
+      },[]);
+
     return <div>
-        
-        <Title title1="What you are" title2="Planning to watch"></Title>
+        <Title title1="Planning to Watch"></Title>
         <ListContainer>
-        <Listing Desc="This is a test to see if there is any overflow of the text this is a test this is a test" img={"url("+link+")"}></Listing>
-        <Listing ></Listing>
-        <Listing></Listing>
-        <Listing></Listing>
-        <Listing></Listing>
-        </ListContainer>
-        
-        <Footer>
-            <Button>
+        {shows.map(o=>{
+
+            if (o.status === 1){
+            return <div>
+        <Listing
+        onClick={(id)=>{
+            console.log("The selected id is "+ id)
+    }}
+        Title={o.title}
+        Desc={o.description}
+        img={"url("+o.img+")"}
+        id={o.id}
+        />
+        </div>
+        } else {
+            return
+        }
+    })}
+    </ListContainer>
+    <Button>
         <AddButton></AddButton>
-        </Button>
-        <NavBar></NavBar>
-        </Footer>
-        
+    </Button>
+    <Footer>
+        <NavBar focused={1}></NavBar>
+    </Footer>
         </div>
 }
 

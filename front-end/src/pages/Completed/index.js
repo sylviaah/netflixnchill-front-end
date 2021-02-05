@@ -6,6 +6,8 @@ import Listing from '../../comps/Listing';
 import AddButton from '../../comps/AddButton';
 import NavBar from '../../comps/NavBar';
 
+const ArrayofShows = require("../../fakeDB.json");
+
 const ListContainer = styled.div`
 display:flex;
 flex-direction:column;
@@ -18,24 +20,36 @@ position:fixed;
 bottom:0;
 `;
 
-const link = "https://images-na.ssl-images-amazon.com/images/I/71ZxpODh1iL._AC_SL1024_.jpg"
-
 const PlanToWatch = () => {
+    const [shows, setShows] = useState([]);
+
+    const GetShows = async () => {
+        setShows(ArrayofShows);
+        console.log(ArrayofShows)
+        console.log("The img "+ ArrayofShows[1].img)
+    }
+
+    useEffect(() => {
+        GetShows()
+      },[]);
+
     return <div>
-        
-        <Title title1="What you have" title2="Completed"></Title>
+        <Title title1="Completed"></Title>
         <ListContainer>
-        <Listing Desc="This is a test to see if there is any overflow of the text this is a test this is a test" img={"url("+link+")"}></Listing>
-        <Listing ></Listing>
-        <Listing></Listing>
-        <Listing></Listing>
-        <Listing></Listing>
-        </ListContainer>
-        
-        <Footer>
-        <NavBar></NavBar>
-        </Footer>
-        
+        {shows.map(o=>{
+
+            if (o.status === 3){
+            return <div>
+        <Listing Title={o.title} Desc={o.description} img={"url("+o.img+")"}></Listing>
+        </div>
+        } else {
+            return
+        }
+    })}
+    </ListContainer>
+    <Footer>
+        <NavBar focused={3}></NavBar>
+    </Footer>
         </div>
 }
 

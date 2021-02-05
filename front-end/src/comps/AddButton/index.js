@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";  
+
 
 const ButtonBox = styled.button`
     width: 64px;
@@ -17,7 +24,7 @@ const ButtonBox = styled.button`
 
 
 const AddButton = () => {
-    return <ButtonBox>+</ButtonBox>
+    return <Link to="/add-to-list"><ButtonBox>+</ButtonBox></Link>
 }
 
 AddButton.defaultProps = {
