@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 const NavWrapper = styled.div`
     width: 375px;
@@ -43,18 +50,34 @@ const NavBreak = styled.div`
 
 
 
-const NavBar = ({focused, setFocus, tabName}) => {
+const NavBar = ({focused, setFocus, tabName, coloured}) => {
     const [focusedTab, setFocusedTab] = useState(0);
+   
     /*function setFocusedTab(tab) {
         setFocus(tab)
     }*/
 
-    console.log (focusedTab)
+    const pageNumber = () => {
+      setFocusedTab(focused);
+    }
+
+    useEffect(() => {
+      pageNumber();
+  },[]);
+
     return <NavWrapper>
         <NavBG>
-            <NavItem style={{backgroundColor: focusedTab == 1 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 1 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(1)}}>Planning</NavItem>
-            <NavItem style={{backgroundColor: focusedTab == 2 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 2 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(2)}}>Watching</NavItem>
-            <NavItem style={{backgroundColor: focusedTab == 3 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 3 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(3)}}>Complete</NavItem>
+            <Link to="/planning-to-watch">
+              <NavItem style={{backgroundColor: focusedTab == 1 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 1 ? "#FA6E5A" : "#000000"}} onClick={() => {
+                setFocusedTab(1)
+                }}>Planning</NavItem>
+            </Link>
+            <Link to="/watching">
+              <NavItem style={{backgroundColor: focusedTab == 2 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 2 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(2)}}>Watching</NavItem>
+            </Link>
+            <Link to="/completed">
+              <NavItem style={{backgroundColor: focusedTab == 3 ? "#FFFFFF" : "#F2F2F2", color: focusedTab == 3 ? "#FA6E5A" : "#000000"}} onClick={() => {setFocusedTab(3)}}>Complete</NavItem>
+            </Link>
         </NavBG>
         <NavBreak/>
     </NavWrapper>

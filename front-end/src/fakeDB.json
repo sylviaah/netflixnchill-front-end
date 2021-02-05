@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Haikyu!",
+        "description": "Haikyu! is great",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/71ZxpODh1iL._AC_SL1024_.jpg",
+        "status": 2
+    },
+    {
+        "id": 2,
+        "title": "Attack on Titan",
+        "description": "Looks good",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/81dH7-pkjiL._AC_SL1500_.jpg",
+        "status": 1
+    },
+    {
+        "id": 3,
+        "title": "Death Note",
+        "description": "Was great",
+        "img": "https://m.media-amazon.com/images/I/51A0-82W+VL._AC_.jpg",
+        "status": 3
+    },
+    {
+        "id": 4,
+        "title": "Bob the Builder",
+        "description": "Can't wait to watch this",
+        "img": "https://d2e111jq13me73.cloudfront.net/sites/default/files/styles/product_image_aspect_switcher_170w/public/product-images/csm-tv/bob-the-builder-poster.jpg?itok=Vcphl-qZ",
+        "status": 1
+    },
+    {
+        "id": 5,
+        "title": "Jojo's Bizarre Adventure: Stardust Crusaders",
+        "description": "This was also great",
+        "img": "https://m.media-amazon.com/images/I/81+B3qb13PL._AC_SL1500_.jpg",
+        "status": 3
+    },
+    {
+        "id": 6,
+        "title": "Spirited Away",
+        "description": "pig",
+        "img": "https://imgc.allpostersimages.com/img/print/u-g-F4S5QZ0.jpg?w=550&h=550&p=0",
+        "status": 3
+    }
+]

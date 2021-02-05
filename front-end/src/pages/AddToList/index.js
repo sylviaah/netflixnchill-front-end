@@ -7,6 +7,23 @@ import Inputs from '../../comps/Inputs';
 import RadioInput from '../../comps/RadioInput';
 import Buttons from '../../comps/Buttons';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+
+
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
 const Content = styled.div`
 display:flex;
 flex-direction:column;
@@ -20,7 +37,7 @@ bottom:40px;
 
 const AddToList = () => {
     return <div>
-        <BackTitle  text="Add to List"></BackTitle>
+        <StyledLink to="/planning-to-watch"><BackTitle text="Add to List"></BackTitle></StyledLink>
         <Content>
             <AddImage></AddImage>
             <Inputs title1="Title" title2="Description"></Inputs>
