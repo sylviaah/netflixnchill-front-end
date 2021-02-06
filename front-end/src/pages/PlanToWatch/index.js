@@ -32,8 +32,6 @@ const PlanToWatch = () => {
 
     const GetShows = async () => {
         setShows(ArrayofShows);
-        console.log(ArrayofShows)
-        console.log("The img "+ ArrayofShows[1].img)
     }
 
     useEffect(() => {
@@ -50,7 +48,7 @@ const PlanToWatch = () => {
         <Listing
         onClick={(id)=>{
             console.log("The selected id is "+ id)
-    }}
+        }}
         Title={o.title}
         Desc={o.description}
         img={"url("+o.img+")"}

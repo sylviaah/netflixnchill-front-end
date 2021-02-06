@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const camera = "https://www.flaticon.com/svg/vstatic/svg/685/685655.svg?token=exp=1612318324~hmac=33afaf6e70f7cac250e63d63e6d487df"
+import camera from "./camera.png";
 
 const Container = styled.div`
-display:flex;
 align-items:center;
-width:120px;
+margin-top:40px;
 `;
 
 const IconBox = styled.img`
@@ -14,24 +12,34 @@ const IconBox = styled.img`
  padding-right:7px;
 `;
 
-const HiddenInput = styled.input`
-display:none;
+const Input = styled.input`
+width:310px;
+height:35px;
+margin-top:5px;
+margin-bottom:15px;
+outline:none;
+background-color:#F2F2F2;
+border:none;
+border-radius:5px;
+padding-left:10px;
+box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.2);
 `;
 
-const InputContainer = styled.label`
+const TopContainer = styled.label`
 width:120px;
 display:flex;
 align-items:center;
 font-weight:bold;
 `;
 
-const AddImage = ({text}) => {
-    return <Container>
-        <InputContainer>
+const AddImage = ({TheLink}) => {
+    return <Container><TopContainer>
             <IconBox src={camera}></IconBox>
-            <HiddenInput type="file" accept="image/*"></HiddenInput>
-            Add Image
-        </InputContainer>
+            Image
+            </TopContainer>
+            <Input placeholder="Paste URL here..." onChange={(e)=>{
+            TheLink(e.target.value);
+            }}></Input>
     </Container>
 }
 
