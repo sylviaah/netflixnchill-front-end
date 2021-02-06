@@ -18,6 +18,9 @@ import {
 
   const ArrayofShows = require("../../fakeDB.json");
 
+//   const { handle } = this.props.location.state.status;
+//   console.log(handle);
+
 const Content = styled.div`
 display:flex;
 flex-direction:column;
@@ -57,8 +60,6 @@ const Info = () => {
 
     const GetShows = async () => {
         setShows(ArrayofShows);
-        console.log(ArrayofShows)
-        console.log("The img "+ ArrayofShows[1].img)
     }
 
     useEffect(() => {

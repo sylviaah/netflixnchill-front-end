@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Container = styled.div`
 display:flex;
 flex-direction:column;
-margin-top:100px;
+margin-top:70px;
 `;
 
 const Button = styled.div`
@@ -47,21 +47,27 @@ const Text = styled.label`
 margin-left:15px;
 `;
 
-const RadioInput = () => {
+const RadioInput = ({check1, check2, check3}) => {
     const [focusedRadio, setFocusedRadio] = useState(0);
 
 
     return<Container>
     <Button>
-        <Input type="radio" id="Planning" name="status" value="Planning"/>
+        <Input type="radio" id="Planning" name="status" value="Planning" onChange={(e)=>{
+            check1(e.target.checked);
+        }}/>
         <Text for="Planning">Planning to watch</Text>
     </Button>
     <Button>
-        <Input type="radio" id="Currently" name="status" value="Currently"/>
+        <Input type="radio" id="Currently" name="status" value="Currently" onChange={(e)=>{
+            check2(e.target.checked);
+        }}/>
         <Text for="Currently">Currently watching</Text>
     </Button>
     <Button>
-        <Input type="radio" id="Done" name="status" value="Done"/>
+        <Input type="radio" id="Done" name="status" value="Done" onChange={(e)=>{
+            check3(e.target.checked);
+        }}/>
         <Text for="Done">Done watching</Text>
     </Button>
     </Container>

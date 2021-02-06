@@ -5,7 +5,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useHistory
   } from "react-router-dom";
   
 
@@ -49,8 +50,16 @@ const ListDesc = styled.div`
 `;
 
 const Listing = ({Title, Desc, img, id, onClick}) => {
+
+    const History = useHistory();
+
     return <ListWrapper>
-        <Link to="/info">
+        <Link to={{
+            pathname: '/info',
+            state: {
+                status: "hello"
+            }
+        }}>
             <ImgContainer img={img} onClick={()=>{
         onClick(id);
         }}>

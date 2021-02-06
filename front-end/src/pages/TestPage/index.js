@@ -14,8 +14,6 @@ const TestPage = () => {
 
     const GetShows = async () => {
         setShows(ArrayofShows);
-        console.log(ArrayofShows)
-        console.log("The img "+ ArrayofShows[1].img)
     }
 
     useEffect(() => {

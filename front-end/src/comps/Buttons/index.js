@@ -17,8 +17,8 @@ const ButtonText = styled.div`
     font-size:16px;
 `
 
-const Buttons = ({text}) =>{
-    return <ButtonBox>
+const Buttons = ({text, onClick}) =>{
+    return <ButtonBox onClick={onClick}>
         <ButtonText> {text} </ButtonText>
     </ButtonBox> 
 }

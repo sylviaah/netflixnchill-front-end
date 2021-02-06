@@ -1,19 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import BackTitle from '../../comps/BackTitle';
+import axios from 'axios';
 
 import AddImage from '../../comps/AddImage';
 import Inputs from '../../comps/Inputs';
 import RadioInput from '../../comps/RadioInput';
 import Buttons from '../../comps/Buttons';
+import Form from '../../comps/Form';
 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useHistory
   } from "react-router-dom";
 
+const ArrayofShows = require("../../fakeDB.json");
 
 
 const StyledLink = styled(Link)`
@@ -36,16 +40,34 @@ bottom:40px;
 `;
 
 const AddToList = () => {
+    const history = useHistory();
+
+    const HandleFormComplete = async (title, description, link, checked) =>{
+        console.log(checked);
+        if (checked === 0){
+            console.log("Please select a status")
+        } else {
+        var object = {
+            id:ArrayofShows.length+1,
+            title:title,
+            description:description,
+            img:link,
+            status:checked
+        };
+        ArrayofShows.push(object)
+        console.log(title, description);
+        if (checked === 1){
+        history.push("/planning-to-watch")
+        } else if (checked === 2){
+            history.push("/watching")
+        } else if (checked === 3){
+            history.push("/completed")
+        }
+    }}
+
     return <div>
         <StyledLink to="/planning-to-watch"><BackTitle text="Add to List"></BackTitle></StyledLink>
-        <Content>
-            <AddImage></AddImage>
-            <Inputs title1="Title" title2="Description"></Inputs>
-            <RadioInput></RadioInput>
-            <ButtonContainer>
-            <Buttons text="Add to List"></Buttons>
-            </ButtonContainer>
-        </Content>
+        <Form onFormComplete={HandleFormComplete}></Form>
     </div>
 }
 
