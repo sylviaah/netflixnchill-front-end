@@ -49,21 +49,14 @@ const ListDesc = styled.div`
     color: #C1C1C1;
 `;
 
-const Listing = ({Title, Desc, img, id, onClick}) => {
+const Listing = ({Title, Desc, img, id, onClick, link}) => {
 
     const History = useHistory();
 
     return <ListWrapper>
-        <Link to={{
-            pathname: '/info',
-            state: {
-                status: "hello"
-            }
-        }}>
-            <ImgContainer img={img} onClick={()=>{
-        onClick(id);
-        }}>
-        </ImgContainer></Link>
+        <Link to={link}>
+            <ImgContainer img={img}/>
+        </Link>
         <TextContainer>
             <ListTitle>{Title}</ListTitle>
             <ListDesc>{Desc}</ListDesc>

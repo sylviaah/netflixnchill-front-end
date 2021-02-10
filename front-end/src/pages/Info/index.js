@@ -13,7 +13,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useHistory
   } from "react-router-dom";
 
   const ArrayofShows = require("../../fakeDB.json");
@@ -48,33 +49,64 @@ const StyledLink = styled(Link)`
 `;
 
 const Info = () => {
-    const [shows, setShows] = useState([]);
-    const [selectedId, setSelected] = useState(null);
+    var url = window.location.href;
+    var currentID = url.charAt(url.length-1)-1
+    const history = useHistory();
 
-    const UpdateStatus = async(status)=>{
-        if(selectedId === null){
-            return false;
-        }
-        
+    const [info, setInfo] = useState({});
+    const [checked, setChecked] = useState(0);
+
+    const GetInfo = async () => {
+        setInfo({...ArrayofShows[currentID]});
     }
 
-    const GetShows = async () => {
-        setShows(ArrayofShows);
+    const HandleFormComplete = () =>{
+        ArrayofShows[currentID].status = checked;
+        if (checked === 0){
+            console.log("Please select a status")
+        } else {
+            console.log(checked)
+        if (checked === 1){
+            history.push("/planning-to-watch")
+        } else if (checked === 2){
+            history.push("/watching")
+        } else if (checked === 3){
+            history.push("/completed")
+        }
+    }}
+
+    const Handle1 = () =>{
+        setChecked(1)
+    }
+    const Handle2 = () =>{
+        setChecked(2)
+    }
+    const Handle3 = () =>{
+        setChecked(3)
     }
 
     useEffect(() => {
-        GetShows()
+        GetInfo()
       },[]);
 
     return <div>
         <StyledLink to="/planning-to-watch"><BackTitle text="Info"></BackTitle></StyledLink>
         <ListContainer>
-            <Listing onClick={(id)=>{setSelected(id); console.log("The selected id"+selectedId)}}></Listing>
+            <Listing
+            Title={info.title}
+            Desc={info.description}
+            img={"url("+info.img+")"}
+            id={info.id}
+            />
         </ListContainer>
         <Content>
-            <RadioInput></RadioInput>
+            <RadioInput
+            check1={Handle1}
+            check2={Handle2}
+            check3={Handle3}
+            />
         <ButtonContainer>
-            <Buttons text="Save"></Buttons>
+            <Buttons text="Save" onClick={HandleFormComplete}></Buttons>
         </ButtonContainer>
         </Content>
         </div>
