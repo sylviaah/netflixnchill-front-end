@@ -39,6 +39,7 @@ const PlanToWatch = () => {
             if (o.status === 3){
             return <div>
         <Listing
+        link={"/info/"+o.id}
         onClick={(id)=>{
             console.log("The selected id is "+ id)
         }}

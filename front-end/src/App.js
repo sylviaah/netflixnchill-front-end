@@ -30,11 +30,11 @@ function App() {
         <Route path="/add-to-list">
           <AddToList></AddToList>
         </Route>
-        <Route path="/info">
-          <Info></Info>
-        </Route>
         <Route path="/test-page">
           <TestPage></TestPage>
+        </Route>
+        <Route path="/info/:id">
+          <Info></Info>
         </Route>
       </Switch>
     </Router>
