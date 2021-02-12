@@ -8,6 +8,7 @@ import NavBar from '../../comps/NavBar';
 import AddImage from '../../comps/AddImage';
 import RadioInput from '../../comps/RadioInput';
 import Buttons from '../../comps/Buttons';
+import axios from 'axios';
 
 import {
     BrowserRouter as Router,
@@ -16,8 +17,6 @@ import {
     Link,
     useHistory
   } from "react-router-dom";
-
-  const ArrayofShows = require("../../fakeDB.json");
 
 //   const { handle } = this.props.location.state.status;
 //   console.log(handle);
@@ -50,18 +49,24 @@ const StyledLink = styled(Link)`
 
 const Info = () => {
     var url = window.location.href;
-    var currentID = url.charAt(url.length-1)-1
+    var selected = url.slice(27)-1;
+    var currentID = url.slice(27);
     const history = useHistory();
 
     const [info, setInfo] = useState({});
     const [checked, setChecked] = useState(0);
 
     const GetInfo = async () => {
-        setInfo({...ArrayofShows[currentID]});
+        var resp = await axios.get("http://localhost:8080/api/movies");
+        var arr = resp.data.movies;
+        setInfo({...arr[selected]});
+        console.log("the status "+arr[selected].status)
     }
 
-    const HandleFormComplete = () =>{
-        ArrayofShows[currentID].status = checked;
+    const HandleFormComplete = async () =>{
+        console.log("the current id "+currentID);
+        var resp = await axios.patch("http://localhost:8080/api/movies/"+currentID, {status: checked});
+
         if (checked === 0){
             console.log("Please select a status")
         } else {
@@ -74,6 +79,21 @@ const Info = () => {
             history.push("/completed")
         }
     }}
+
+    const HandleFormDelete = async () =>{
+        var resp = await axios.delete("http://localhost:8080/api/movies/"+currentID);
+
+        var resp2 = await axios.get("http://localhost:8080/api/movies");
+        var arr = resp2.data.movies;
+
+        if (arr[selected].status === 1){
+            history.push("/planning-to-watch")
+        } else if (arr[selected].status === 2){
+            history.push("/watching")
+        } else if (arr[selected].status === 3){
+            history.push("/completed")
+        }
+    }
 
     const Handle1 = () =>{
         setChecked(1)
