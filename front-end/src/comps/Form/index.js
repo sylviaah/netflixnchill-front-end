@@ -12,6 +12,10 @@ flex-direction:column;
 align-items:center;
 `;
 
+const RadioContainer = styled.div`
+margin-top:70px;
+`;
+
 const ButtonContainer = styled.div`
 position:fixed;
 bottom:40px;
@@ -42,6 +46,7 @@ TheTitle={setTitle}
 TheDescription={setDescription}
 />
 <AddImage TheLink={setLink}></AddImage>
+<RadioContainer></RadioContainer>
 <RadioInput
 check1={Handle1}
 check2={Handle2}
