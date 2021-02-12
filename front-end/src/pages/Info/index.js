@@ -15,7 +15,8 @@ import {
     Switch,
     Route,
     Link,
-    useHistory
+    useHistory,
+    useParams
   } from "react-router-dom";
 
 //   const { handle } = this.props.location.state.status;
@@ -25,11 +26,16 @@ const Content = styled.div`
 display:flex;
 flex-direction:column;
 align-items:center;
+align-content:space-between;
+
 `;
 
-const ButtonContainer = styled.div`
-position:fixed;
-bottom:40px;
+const Margin1 = styled.div`
+margin-bottom:70px;
+`;
+
+const Margin2 = styled.div`
+margin-bottom:20px;
 `;
 
 const ListContainer = styled.div`
@@ -48,19 +54,19 @@ const StyledLink = styled(Link)`
 `;
 
 const Info = () => {
-    var url = window.location.href;
-    var selected = url.slice(27)-1;
-    var currentID = url.slice(27);
+    const params = useParams();
+    var currentID = params.id;
     const history = useHistory();
 
     const [info, setInfo] = useState({});
     const [checked, setChecked] = useState(0);
 
     const GetInfo = async () => {
-        var resp = await axios.get("http://localhost:8080/api/movies");
+        var resp = await axios.get("http://localhost:8080/api/movies/"+currentID);
         var arr = resp.data.movies;
-        setInfo({...arr[selected]});
-        console.log("the status "+arr[selected].status)
+        console.log(arr);
+        setInfo({...arr[0]});
+        console.log("the status "+arr[0].status)
     }
 
     const HandleFormComplete = async () =>{
@@ -82,17 +88,7 @@ const Info = () => {
 
     const HandleFormDelete = async () =>{
         var resp = await axios.delete("http://localhost:8080/api/movies/"+currentID);
-
-        var resp2 = await axios.get("http://localhost:8080/api/movies");
-        var arr = resp2.data.movies;
-
-        if (arr[selected].status === 1){
-            history.push("/planning-to-watch")
-        } else if (arr[selected].status === 2){
-            history.push("/watching")
-        } else if (arr[selected].status === 3){
-            history.push("/completed")
-        }
+        history.push("/planning-to-watch")
     }
 
     const Handle1 = () =>{
@@ -125,9 +121,11 @@ const Info = () => {
             check2={Handle2}
             check3={Handle3}
             />
-        <ButtonContainer>
+            <Margin1/>
+            <Buttons text="Delete" onClick={HandleFormDelete}></Buttons>
+            <Margin2/>
             <Buttons text="Save" onClick={HandleFormComplete}></Buttons>
-        </ButtonContainer>
+
         </Content>
         </div>
 }
