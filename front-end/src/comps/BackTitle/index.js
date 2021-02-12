@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-
-const back = "https://www.flaticon.com/svg/vstatic/svg/130/130882.svg?token=exp=1612318674~hmac=b8e5fd2256ceb3a0ed510cb2b1fbe76d"
+import back from './back.png';
 
 const Container = styled.div`
 display:flex;

@@ -17,9 +17,6 @@ import {
     useHistory
   } from "react-router-dom";
 
-const ArrayofShows = require("../../fakeDB.json");
-
-
 const StyledLink = styled(Link)`
     text-decoration: none;
 
@@ -47,15 +44,9 @@ const AddToList = () => {
         if (checked === 0){
             console.log("Please select a status")
         } else {
-        var object = {
-            id:ArrayofShows.length+1,
-            title:title,
-            description:description,
-            img:link,
-            status:checked
-        };
-        ArrayofShows.push(object)
-        console.log(title, description);
+        var resp = await axios.post("http://localhost:8080/api/movies", {title:title, description:description, img:link, status:checked});
+        console.log("create ", resp)
+        
         if (checked === 1){
         history.push("/planning-to-watch")
         } else if (checked === 2){

@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import Title from '../../comps/Title';
 import Listing from '../../comps/Listing';
 import AddButton from '../../comps/AddButton';
 import NavBar from '../../comps/NavBar';
-
-const ArrayofShows = require("../../fakeDB.json");
 
 const ListContainer = styled.div`
 display:flex;
@@ -24,7 +23,9 @@ const PlanToWatch = () => {
     const [shows, setShows] = useState([]);
 
     const GetShows = async () => {
-        setShows(ArrayofShows);
+        var resp = await axios.get("http://localhost:8080/api/movies");
+        var arr = resp.data.movies;
+        setShows(arr);
     }
 
     useEffect(() => {
